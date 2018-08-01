@@ -4,6 +4,7 @@ html {
   font-family: 'Open Sans', sans-serif;
 }
 .button {
+    align: center;
     background-color: #4CAF50;
     border: none;
     color: white;
