@@ -1,6 +1,6 @@
 ﻿var myHeading = document.querySelector('h1');
 myHeading.textContent = 'KARTHIKs world!';
-document.querySelector('button').onclick = function() {
+document.querySelector('image').onclick = function() {
     alert('Ouch! Stop poking me!');
 }
 
