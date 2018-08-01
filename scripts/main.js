@@ -1,6 +1,6 @@
 ﻿var myHeading = document.querySelector('h1');
 myHeading.textContent = 'Hello world!';
-var myVar = setInterval(myTimer, 10000);
+//var myVar = setInterval(myTimer, 10000);
 var i=0;
 var k;
 function myTimer()
