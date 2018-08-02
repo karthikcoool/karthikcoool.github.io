@@ -15,18 +15,21 @@ p, li {
   line-height: 2;
   letter-spacing: 1px;
 }
-.button {
+button {
     background-color: #4CAF50;
     border: none;
     color: white;
     padding: 15px 25px;
     text-align: center;
-    font-size: 16px;
+    font-size: 24px;
     cursor: pointer;
+	float:middle;
+	
 }
 
-.button:hover {
-    background-color: green;
+
+button:hover {
+    background-color: black;
 }
 
 html {
