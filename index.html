@@ -1,268 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Befaf (Now & After Partner)</title>
-  <style>
-    :root {
-      --primary: #ff4081;
-      --background: #f0f2f5;
-      --foreground: #ffffff;
-      --text: #333333;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--background);
-      color: var(--text);
-    }
-
-    header {
-      background-color: var(--foreground);
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .brand {
-      font-size: 20px;
-      font-weight: bold;
-      color: var(--primary);
-    }
-
-    .hamburger {
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    .menu {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 200px;
-      height: 100%;
-      background-color: #fff;
-      box-shadow: 2px 0 8px rgba(0,0,0,0.1);
-      padding: 20px;
-      z-index: 1000;
-    }
-
-    .menu h3 {
-      margin-top: 0;
-    }
-
-    .menu ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .menu li {
-      padding: 8px 0;
-      border-bottom: 1px solid #ddd;
-      cursor: pointer;
-    }
-
-    .profile {
-      text-align: center;
-      margin: 20px auto;
-    }
-
-    .profile img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    .profile h2 {
-      margin: 10px 0 5px;
-    }
-
-    .toggle-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 30px;
-    }
-
-    .toggle-buttons button {
-      padding: 10px 20px;
-      border: none;
-      background-color: var(--primary);
-      color: white;
-      border-radius: 20px;
-      cursor: pointer;
-    }
-
-    .toggle-buttons button.active {
-      background-color: #e91e63;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    .section {
-      background-color: var(--foreground);
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 30px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-
-    .scroll-box {
-      max-height: 300px;
-      overflow-y: auto;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      background: white;
-    }
-
-    .life-theory {
-      background: #fafafa;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-left: 4px solid var(--primary);
-      border-radius: 4px;
-      transition: background 0.3s;
-    }
-
-    .life-theory:hover {
-      background: #ffeeef;
-    }
-
-    .image-insert {
-      margin: 20px 0;
-      text-align: center;
-    }
-
-    .image-insert img {
-      width: 100%;
-      max-width: 300px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    @media (max-width: 600px) {
-      .toggle-buttons {
-        flex-direction: column;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>The Moody Magic 8-Ball</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1a1a2e; color: white; text-align: center; padding: 50px; }
+        .container { max-width: 500px; margin: auto; background: #16213e; padding: 30px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.5); border: 2px solid #0f3460; }
+        #ball { width: 150px; height: 150px; background: radial-gradient(circle at 30% 30%, #333, #000); border-radius: 50%; margin: 20px auto; display: flex; align-items: center; justify-content: center; border: 8px solid #333; transition: transform 0.1s; }
+        #display { font-size: 1.2rem; font-weight: bold; color: #e94560; min-height: 50px; margin-top: 20px; }
+        input { padding: 10px; width: 80%; border-radius: 5px; border: none; margin-bottom: 10px; }
+        button { padding: 10px 20px; background: #e94560; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #ff4d6d; }
+        .history-box { margin-top: 30px; text-align: left; background: #0f3460; padding: 15px; border-radius: 10px; font-size: 0.9rem; }
+        ul { list-style-type: "🔮 "; padding-left: 20px; }
+        .shake { animation: shake 0.2s infinite; }
+        @keyframes shake { 0% { transform: translate(1px, 1px); } 50% { transform: translate(-2px, -2px); } 100% { transform: translate(1px, 1px); } }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="brand">Befaf</div>
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-  </header>
 
-  <div class="menu" id="sideMenu">
-    <h3>Select Profile</h3>
-    <ul>
-      <li onclick="selectUser('Karthik Selvaraj')">Karthik Selvaraj</li>
-      <li onclick="selectUser('Friend 1')">Friend 1</li>
-      <li onclick="selectUser('Friend 2')">Friend 2</li>
-    </ul>
-  </div>
+<div class="container">
+    <h1>🔮 Moody 8-Ball</h1>
+    <input type="text" id="userInput" placeholder="Ask your question here...">
+    <br>
+    <button onclick="askTheBall()">Ask the Spirits</button>
 
-  <div class="container">
-    <div class="profile">
-      <img src="/pictures/profile.jpg" alt="Profile Picture">
-      <h2 id="username">Karthik Selvaraj</h2>
+    <div id="ball">
+        <div style="color: white; font-size: 40px;">8</div>
     </div>
 
-    <div class="toggle-buttons">
-      <button class="active" onclick="toggleMode('before')">Now</button>
-      <button onclick="toggleMode('after')">After Partner</button>
+    <div id="display">Waiting for a question...</div>
+
+    <div class="history-box">
+        <strong>History Log (The Memory):</strong>
+        <ul id="historyList"></ul>
     </div>
+</div>
 
-    <div id="content-before">
-      <div class="section">
-        <h2>NOW - Guiding Principle</h2>
-        <p>It's okay to be unsustainable right now — this is my time. My life, my rules.</p>
-        <p>Examples: Working 15-hour days, ghosting loved ones, confusing people about my intentions, breaking up quickly when needed, etc.</p>
-      </div>
+<script>
+    const answers = ["Yes!", "No way.", "Ask me later.", "Maybe...", "Definitely!", "Highly Unlikely."];
+    const history = []; 
+    let clickCount = 0; 
 
-      <div class="section">
-        <h2>Core Formula</h2>
-        <p>Be as good as possible to everyone. If things go bad despite your best effort, let the guilt stay with them. That way, you can permanently walk away without self-doubt or guilt. No second chances — the world is too big for repeats.</p>
-      </div>
+    function askTheBall() {
+        const input = document.getElementById("userInput");
+        const display = document.getElementById("display");
+        const historyList = document.getElementById("historyList");
+        const ballElement = document.getElementById("ball");
+        
+        const question = input.value;
 
-      <div class="section">
-        <h2>Priorities</h2>
-        <ul>
-          <li>Work</li>
-          <li>Personal Growth</li>
-          <li>Health</li>
-          <li>Parents</li>
-          <li>Friends / Girlfriend(s)</li>
-          <li>Vacation / Me-time / Non-essential things</li>
-        </ul>
-      </div>
+        // --- 1. IF / ELSE (The Gatekeeper) ---
+        if (question.length === 0) {
+            display.innerText = "Error: You must speak to the ball!";
+            return;
+        } else if (question.length < 5) {
+            display.innerText = "That's too short! Be more specific.";
+            return;
+        }
 
-      <div class="section">
-        <h2>Life Theories</h2>
-        <div class="scroll-box">
-          <div class="life-theory">I don’t miss people. I’m just lazy.</div>
-          <div class="life-theory">Never Ghost People, reply within 2 seconds :)</div>
-          <div class="life-theory">A day without a plan is a wasted day.</div>
-          <div class="life-theory">Maximize the benefits of being single — do what you can’t do after marriage.</div>
-          <div class="life-theory">Multiple girlfriends are okay, as long as you are a good person and not giving up finding the girl of your life</div>
-          <div class="life-theory">Work on your startup idea.</div>
-          <div class="life-theory">Mental health is a myth — get to work.</div>
-          <div class="life-theory">If someone gives you a gift, return it soon — avoid emotional attachment.</div>
-          <div class="life-theory">Apologize when needed — no regrets.</div>
-          <div class="life-theory">Be extra rude to lazy people or anyone making you lazy.</div>
-          <div class="life-theory">Be a king. Always be the giver, not the receiver.</div>
-          <div class="life-theory">Screw patriarchy.</div>
-          <div class="life-theory">Never go back to exes or friends you've cut off — it’s bad for them and a sign you haven’t grown.</div>
-          <div class="life-theory">Fake it till you make it.</div>
-          <div class="life-theory">I’m not responsible for my father’s mistakes. I’m going to be a billionaire.</div>
-          <div class="life-theory">Whether good or bad things happen — just get back to work.</div>
-          <div class="life-theory">Cannot be too fragile that a girl's mood swing can make you mad.</div>
-          <div class="life-theory">Feminism may be bitter, but it’s necessary to bring India back into productivity.</div>
-          <div class="life-theory">Indian traditions often kill productivity and slow down our country's growth.</div>
-        </div>
-      </div>
-    </div>
+        // Visual "Shake" Effect using CSS class
+        ballElement.classList.add("shake");
 
-    <div id="content-after" style="display:none">
-      <div class="section">
-        <h2>After Partner</h2>
-        <p>I am working on this, stay tuned...</p>
-      </div>
-    </div>
-  </div>
+        // --- 2. WHILE LOOP (The Processing Power) ---
+        let thinkingTime = 500000; // Large number to simulate "work"
+        while (thinkingTime > 0) {
+            thinkingTime--; 
+        }
 
-  <script>
-    function toggleMode(mode) {
-      document.querySelectorAll('.toggle-buttons button').forEach(btn => btn.classList.remove('active'));
-      document.querySelector(`.toggle-buttons button[onclick*="${mode}"]`).classList.add('active');
-      document.getElementById('content-before').style.display = mode === 'before' ? 'block' : 'none';
-      document.getElementById('content-after').style.display = mode === 'after' ? 'block' : 'none';
+        // Stop shaking after the "work" is done
+        setTimeout(() => {
+            ballElement.classList.remove("shake");
+
+            // Pick a random answer
+            let randomIndex = Math.floor(Math.random() * answers.length);
+            let currentResponse = answers[randomIndex];
+
+            // --- 3. LOGIC: MOOD TRACKER ---
+            clickCount++;
+            if (clickCount > 7) {
+                display.innerText = "I'm tired! Stop clicking me!";
+            } else {
+                display.innerText = currentResponse;
+                history.push(question + " -> " + currentResponse);
+            }
+
+            // --- 4. FOR LOOP (The History Rebuilder) ---
+            historyList.innerHTML = ""; // Clear list
+            for (let i = 0; i < history.length; i++) {
+                let listItem = document.createElement("li");
+                listItem.innerText = history[i];
+                historyList.appendChild(listItem);
+            }
+            
+            input.value = ""; // Clear input for next question
+        }, 500); 
     }
+</script>
 
-    function toggleMenu() {
-      const menu = document.getElementById('sideMenu');
-      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-    }
-
-    function selectUser(name) {
-      document.getElementById('username').innerText = name;
-      toggleMenu();
-    }
-  </script>
 </body>
 </html>
