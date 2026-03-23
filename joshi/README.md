@@ -1,1 +1,0 @@
-# karthikcoool.github.io
